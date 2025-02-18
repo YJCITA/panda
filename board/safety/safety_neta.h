@@ -191,15 +191,15 @@ static void neta_rx_hook(const CANPacket_t *to_push) {
     // }
 
     // 如果刹车踏板被踩下，不允许发送ACC控制报文
-    if(addr == IDB_Fr01_0E5){
-      // IDB1_BrakePedalApplied : 0|1@0+ (1,0) [0|1] "NoUnit"  ADAS,FLC_FD3
-      brake_pressure_detected = parse_can_data(to_push->data, 0, 1);
-      if(brake_pressure_detected){
-        controls_allowed = false;
-      }
-    }
+    // if(addr == IDB_Fr01_0E5){
+    //   // IDB1_BrakePedalApplied : 0|1@0+ (1,0) [0|1] "NoUnit"  ADAS,FLC_FD3
+    //   brake_pressure_detected = parse_can_data(to_push->data, 0, 1);
+    //   if(brake_pressure_detected){
+    //     controls_allowed = false;
+    //   }
+    // }
 
-    brake_pressed = brake_pressure_detected;
+    // brake_pressed = brake_pressure_detected;
     // TODO 2024.02.14
     // generic_rx_checks((addr == ADCS_Fr02_08E));
   }
