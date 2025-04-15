@@ -211,7 +211,9 @@ void can_rx(uint8_t can_number) {
       to_send.rejected = 0U;
       to_send.extended = to_push.extended;
       to_send.addr = to_push.addr;
-      to_send.bus = to_push.bus;
+    //   -YJ-
+    //   to_send.bus = to_push.bus;
+      to_send.bus = bus_fwd_num;
       to_send.data_len_code = to_push.data_len_code;
       (void)memcpy(to_send.data, to_push.data, dlc_to_len[to_push.data_len_code]);
       can_set_checksum(&to_send);

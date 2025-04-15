@@ -28,6 +28,8 @@ struct __attribute__((packed)) health_t {
   uint16_t sbu1_voltage_mV;
   uint16_t sbu2_voltage_mV;
   uint8_t som_reset_triggered;
+  // -YJ-
+  uint32_t controls_allowed_false_index;
 };
 
 #define CAN_HEALTH_PACKET_VERSION 5
