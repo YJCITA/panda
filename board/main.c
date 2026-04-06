@@ -77,6 +77,16 @@ void set_safety_mode(uint16_t mode, uint16_t param) {
       }
       can_silent = false;
       break;
+    case SAFETY_ALLOUTPUT:
+      /* Raw CAN TX/RX for tools (e.g. FSD mod): do not drive intercept relay — keep
+       * harness passthrough like power-on so vehicle buses stay connected; only safety
+       * hooks differ from NOOUTPUT. Car safety modes still use default (intercept on). */
+      set_intercept_relay(false, false);
+      heartbeat_counter = 0U;
+      heartbeat_lost = false;
+      current_board->set_can_mode(CAN_MODE_NORMAL);
+      can_silent = false;
+      break;
     default:
       set_intercept_relay(true, false);
       heartbeat_counter = 0U;
